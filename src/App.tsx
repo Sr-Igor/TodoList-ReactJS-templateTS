@@ -1,44 +1,30 @@
+import * as C from './AppStyles'
 import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { ListItem } from './Types/ListItem'
+import { ListItemUn } from './Components/ListItemUn'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+  let InitialList = localStorage.getItem("TodoList")
+
+  const [list, setList] = useState<ListItem[]>([
+    {id: 1, body: "Tarefa1", done: false},
+    {id: 2, body: "Tarefa2", done: false}
+  ])
+
+
+  return(
+    <C.Container>
+    <C.Area>
+      <h1>Todo List</h1>
+
+      {/* {Area de nova tafera} */}
+
+      {list.map((item, index) => (
+        <ListItemUn key={index} item={item} />
+      ))}
+    </C.Area>
+    </C.Container>
   )
 }
 
