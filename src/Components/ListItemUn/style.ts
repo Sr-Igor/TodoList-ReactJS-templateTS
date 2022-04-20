@@ -16,8 +16,7 @@ export const ListItemBox = styled.div(({isChecked}: Props)=>(
 
     label {
         font-size: 20px;
-        text-decoration: line-through
-        
+        text-decoration: ${isChecked ? 'line-through' : 'initial'}
     }
 
     input {
