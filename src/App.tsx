@@ -23,9 +23,8 @@ function App() {
       done: false,
     })
     setList(newList)
+    localStorage.setItem("TodoList", JSON.stringify(newList))
   }
-
-
 
   return(
     <C.Container>

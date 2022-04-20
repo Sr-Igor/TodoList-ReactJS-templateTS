@@ -9,8 +9,15 @@ type Props = {
 export const ListItemUn = ({item} : Props) => {
     const [isChecked, setCheck] = useState(item.done)
 
-    const handleCheckBox = (e) => {
+    const handleCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
         setCheck(e.target.checked)
+        let InitialList = JSON.parse(localStorage.getItem("TodoList"))
+        for (let i in InitialList){
+            if(InitialList[i].id == item.id){
+                InitialList[i].done = e.target.checked
+                localStorage.setItem("TodoList", JSON.stringify(InitialList))
+            }
+        }
     }
 
     return(
